@@ -4,6 +4,11 @@
 (setq ns-command-modifier (quote meta))
 (setq ns-alternate-modifier (quote super))
 
+;
+; scroll 1 by 1
+;
+(setq scroll-step 1)
+
 (require 'cl)
 
 ;; スタートアップメッセージを非表示
@@ -168,6 +173,62 @@
 (setq make-backup-files nil) ; 初期値はt
 ;; オートセーブファイルを作らない
 (setq auto-save-default nil) ; 初期値はt
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 5.9 フック                                             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ファイルが #! から始まる場合、+xを付けて保存する
+(add-hook 'after-save-hook
+          'executable-make-buffer-file-executable-if-script-p)
+
+;; emacs-lisp-mode-hook用の関数を定義
+(defun elisp-mode-hooks ()
+  "lisp-mode-hooks"
+  (when (require 'eldoc nil t)
+    (setq eldoc-idle-delay 0.2)
+    (setq eldoc-echo-area-use-multiline-p t)
+    (turn-on-eldoc-mode)))
+
+;; emacs-lisp-modeのフックをセット
+(add-hook 'emacs-lisp-mode-hook 'elisp-mode-hooks)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 6.1 Elispをインストールしよう                          ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ▼要拡張機能インストール▼
+;;; P113 拡張機能を自動インストール──auto-install
+;; auto-installの設定
+(when (require 'auto-install nil t)	; ←1●
+  ;; 2●インストールディレクトリを設定する 初期値は ~/.emacs.d/auto-install/
+  (setq auto-install-directory "~/.emacs.d/elisp/")
+  ;; EmacsWikiに登録されているelisp の名前を取得する
+  (auto-install-update-emacswiki-package-name t)
+  ;; 必要であればプロキシの設定を行う
+  ;; (setq url-proxy-services '(("http" . "localhost:8339")))
+  ;; 3●install-elisp の関数を利用可能にする
+  (auto-install-compatibility-setup)) ; 4●
+
+;; ▼要拡張機能インストール▼
+;;; P114-115 auto-installを利用する
+;; (install-elisp "http://www.emacswiki.org/emacs/download/redo+.el")
+(when (require 'redo+ nil t)
+  ;; C-' にリドゥを割り当てる
+  (global-set-key (kbd "C-'") 'redo)
+  ;; 日本語キーボードの場合C-. などがよいかも
+  ;; (global-set-key (kbd "C-.") 'redo)
+  ) ; ←ここでC-x C-eで設定反映
+
+;; ▼要拡張機能インストール▼（ただし、Emacs24からはインストール不要）
+;;; P115-116 Emacs Lisp Package Archive（ELPA）──Emacs Lispパッケージマネージャ
+;; package.elの設定
+(when (require 'package nil t)
+  ;; パッケージリポジトリにMarmaladeと開発者運営のELPAを追加
+  (add-to-list 'package-archives
+               '("marmalade" . "http://marmalade-repo.org/packages/"))
+  (add-to-list 'package-archives '("ELPA" . "http://tromey.com/elpa/"))
+  ;; インストールしたパッケージにロードパスを通して読み込む
+  (package-initialize))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
