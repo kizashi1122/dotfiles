@@ -1,0 +1,7 @@
+
+# ignore the following files
+*.log
+.emacs.d/anything-c-adaptive-history
+.emacs.d/auto-save-list/
+.emacs.d/tramp
+
