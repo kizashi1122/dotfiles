@@ -493,8 +493,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ▼要拡張機能インストール▼
 ;;; P195-196 Rinari
-(when (require 'rhtml-mode nil t)
-  (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . rhtml-mode)))
+;(when (require 'rhtml-mode nil t)
+;  (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . rhtml-mode)))
+
+;;; rhtml-mode
+(add-to-list 'load-path "~/.emacs.d/elisp/rhtml")
+(require 'rhtml-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\.erb$" . rhtml-mode))
+(add-hook 'rhtml-mode-hook
+              (lambda () (rinari-launch)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
