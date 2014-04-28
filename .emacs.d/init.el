@@ -676,3 +676,24 @@
 (add-to-list 'load-path "~/.emacs.d/public_repos/cucumber")
 (autoload 'feature-mode "feature-mode" "Mode for editing cucumber files" t)
 (add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
+
+;;;
+;;; backward-delete-word
+;;;
+(defun delete-word (arg)
+"Delete characters forward until encountering the end of a word.
+With argument, do this that many times."
+(interactive "*p")
+(delete-region (point) (save-excursion (forward-word arg) (point))))
+
+(defun backward-delete-word (arg)
+"Delete characters backward until encountering the end of a word.
+With argument, do this that many times."
+(interactive "*p")
+(delete-word (- arg)))
+
+;; Meta backspace kills and puts words in kill ring is very unintuitive and
+;; screws up kill ring. Use delete instead.
+;;(global-set-key [(meta backspace)] 'backward-delete-word) ;; this doesn't work correctly
+(global-set-key (read-kbd-macro "<M-DEL>") 'backward-delete-word)
+(global-set-key [(meta d)] 'delete-word)
