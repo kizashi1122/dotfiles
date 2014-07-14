@@ -416,6 +416,8 @@
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.cap$" . ruby-mode))
 
 ;; ruby-mode-hook用の関数を定義
@@ -559,14 +561,14 @@
 ;;; 改行やタブを可視化する whitespace-mode
 (setq whitespace-display-mappings
       '((space-mark ?\x3000 [?\□]) ; zenkaku space
-        (newline-mark 10 [8629 10]) ; newlne
+;        (newline-mark 10 [8629 10]) ; newlne
         (tab-mark 9 [187 9] [92 9]) ; tab » 187
         )
       whitespace-style
       '(spaces
         ;; tabs
         trailing
-        newline
+        ;; newline
         space-mark
         tab-mark
         newline-mark))
