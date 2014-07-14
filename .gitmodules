@@ -7,3 +7,6 @@
 [submodule ".emacs.d/public_repos/rinari"]
 	path = .emacs.d/public_repos/rinari
 	url = git@github.com:eschulte/rinari.git
+[submodule ".emacs.d/public_repos/php-mode"]
+	path = .emacs.d/public_repos/php-mode
+	url = git@github.com:ejmr/php-mode.git
