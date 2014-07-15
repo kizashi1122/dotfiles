@@ -9,7 +9,7 @@
 
 ```sh
 $ cd 
-$ git clone `this repository`
+$ git clone git@github.com:kizashi1122/dotfiles.git
 $ cd dotfiles
 $ git submodule status
 -4ce90c3c599aa33ae781d8c19a9e8a4c42b58016 .emacs.d/public_repos/php-mode
