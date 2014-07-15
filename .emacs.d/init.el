@@ -365,6 +365,9 @@
 ;; perl-modeをcperl-modeのエイリアスにする
 (defalias 'perl-mode 'cperl-mode)
 
+;; .pl .pm .cgi .fcig .t で終わるファイルは cperl-mode
+(add-to-list 'auto-mode-alist '("\\.\\(p[lm]\\|f?cgi\\|t\\)$" . cperl-mode))
+
 ;;; P170 cperl-modeのインデントを調整する
 ;; cperl-modeのインデント設定
 (setq cperl-indent-level 4 ; インデント幅を4にする
