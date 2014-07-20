@@ -10,3 +10,9 @@
 [submodule ".emacs.d/public_repos/php-mode"]
 	path = .emacs.d/public_repos/php-mode
 	url = git@github.com:ejmr/php-mode.git
+[submodule ".emacs.d/public_repos/magit"]
+	path = .emacs.d/public_repos/magit
+	url = git@github.com:magit/magit.git
+[submodule ".emacs.d/public_repos/git-modes"]
+	path = .emacs.d/public_repos/git-modes
+	url = git@github.com:magit/git-modes.git

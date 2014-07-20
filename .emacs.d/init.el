@@ -523,16 +523,25 @@
 ;;       sql-server "localhost" ; ホスト名
 ;;       sql-product 'mysql) ; データベースの種類
 
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  バージョン管理                                     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ▼要拡張機能インストール▼
 ;;; P217-219 Gitフロントエンド Egg
 ;; GitフロントエンドEggの設定
-(when (executable-find "git")
-  (require 'egg nil t))
+;(when (executable-find "git")
+;  (require 'egg nil t))
+
+(eval-after-load "vc" '(remove-hook 'find-file-hooks 'vc-find-file-hook))
+(require 'magit)
+ (eval-after-load 'magit
+   '(progn
+      (set-face-foreground 'magit-diff-add "green3")
+      (set-face-foreground 'magit-diff-del "red3")
+      (when (not window-system)
+        (set-face-background 'magit-item-highlight "white"))))
+ (global-set-key (kbd "C-x m") 'magit-status)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
