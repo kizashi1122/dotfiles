@@ -399,6 +399,17 @@
 
 (add-hook  'cperl-mode-hook 'perl-completion-hook)
 
+(defun perltidy-region ()
+  "Run perltydi on the current region."
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (point) (mark) "perltidy -q" nil t)))
+(defun perltidy-defun ()
+  "Run perltidy on the current defun."
+  (interactive)
+  (save-excursion (mark-defun)
+                    (perltidy-resgion)))
+
 ;;; P169 コラム　便利なエイリアス
 ;; dtwをdelete-trailing-whitespaceのエイリアスにする
 (defalias 'dtw 'delete-trailing-whitespace)
@@ -648,7 +659,12 @@
 ;; カレントウィンドウの透明度を変更する (85%)
 ;; (set-frame-parameter nil 'alpha 0.85)
 (set-frame-parameter nil 'alpha 95)
+
+;;; リージョンの大文字小文字変換を有効にする。
+;; C-x C-u -> upcase
+;; C-x C-l -> downcase
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
 
 (setq c-tab-always-indent t)
 (setq default-tab-width 4)
