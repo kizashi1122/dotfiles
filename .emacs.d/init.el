@@ -442,7 +442,6 @@
 ;; ruby-mode-hookに追加
 (add-hook 'ruby-mode-hook 'ruby-mode-hooks)
 
-
 ;; ▼要拡張機能インストール▼
 ;;; P172-173 Ruby編集用の便利なマイナーモード
 ;; 括弧の自動挿入──ruby-electric
@@ -455,7 +454,6 @@
   "Run an inferior Ruby process")
 (autoload 'inf-ruby-keys "inf-ruby"
   "Set local key defs for inf-ruby in ruby-mode")
-
 
 (require 'php-mode)
 
@@ -582,6 +580,7 @@
 ;; C-<f8> でバッファ全体をインデント
 (define-key global-map (kbd "C-<f8>") 'indent-whole-buffer)
 
+(require 'transpose-frame)
 
 ;;; 改行やタブを可視化する whitespace-mode
 (setq whitespace-display-mappings
