@@ -728,3 +728,5 @@ With argument, do this that many times."
 ;;(global-set-key [(meta backspace)] 'backward-delete-word) ;; this doesn't work correctly
 (global-set-key (read-kbd-macro "<M-DEL>") 'backward-delete-word)
 (global-set-key [(meta d)] 'delete-word)
+
+(savehist-mode 1)
