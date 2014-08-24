@@ -82,6 +82,7 @@
 (setq frame-title-format "%f")
 ;; 行番号を常に表示する
 ;(global-linum-mode t)
+(setq linum-format "%d ")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -408,7 +409,7 @@
   "Run perltidy on the current defun."
   (interactive)
   (save-excursion (mark-defun)
-                    (perltidy-resgion)))
+                    (perltidy-region)))
 
 ;;; P169 コラム　便利なエイリアス
 ;; dtwをdelete-trailing-whitespaceのエイリアスにする
@@ -527,10 +528,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; P210-211 MySQLへ接続する──sql-interactive-mode
 ;; SQLサーバへ接続するためのデフォルト情報
-;; (setq sql-user "root" ; デフォルトユーザ名
-;;       sql-database "database_name" ;  データベース名
-;;       sql-server "localhost" ; ホスト名
-;;       sql-product 'mysql) ; データベースの種類
+ (setq sql-user "vagrant" ; デフォルトユーザ名
+       sql-database "vagrant" ;  データベース名
+       sql-server "localhost" ; ホスト名
+       sql-product 'postgresql) ; データベースの種類
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  バージョン管理                                     ;;
@@ -557,7 +558,7 @@
 ;;            オマケ                                      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; カーソル位置のファイルパスやアドレスを "C-x C-f" で開く
-(ffap-bindings)
+;;; (ffap-bindings)
 
 ;;; 筆者のキーバインド設定
 ;; Mac の Command + f と C-x b で anything-for-files
@@ -708,6 +709,11 @@
 (autoload 'feature-mode "feature-mode" "Mode for editing cucumber files" t)
 (add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
 
+;; multi-term
+(when (require 'multi-term nil t)
+  ;; shell
+  (setq multi-term-program "/bin/bash"))
+
 ;;;
 ;;; backward-delete-word
 ;;;
@@ -730,3 +736,10 @@ With argument, do this that many times."
 (global-set-key [(meta d)] 'delete-word)
 
 (savehist-mode 1)
+
+;; Markdown-mode
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
