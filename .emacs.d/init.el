@@ -434,6 +434,7 @@
 (add-to-list 'auto-mode-alist '("Berksfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.cap$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
 
 ;; ruby-mode-hook用の関数を定義
 (defun ruby-mode-hooks ()
@@ -711,8 +712,24 @@
 
 ;; multi-term
 (when (require 'multi-term nil t)
-  ;; shell
+;; shell
   (setq multi-term-program "/bin/bash"))
+(setq multi-term-program shell-file-name)
+
+(global-set-key (kbd "C-c n") 'multi-term-next)
+(global-set-key (kbd "C-c p") 'multi-term-prev)
+
+(add-hook 'term-mode-hook
+          (lambda ()
+            (define-key term-raw-map (kbd "C-\\") 'other-window)
+            (define-key term-raw-map (kbd "C-y") 'term-paste)
+            (define-key term-raw-map (kbd "C-h") 'term-send-backspace)
+            (define-key term-raw-map (kbd "M-d") 'term-send-forward-kill-word)
+            (define-key term-raw-map (kbd "M-<backspace>") 'term-send-backward-kill-word)
+            (define-key term-raw-map (kbd "M-DEL") 'term-send-backward-kill-word)
+            (define-key term-raw-map (kbd "C-v") nil)
+            (define-key term-raw-map (kbd "ESC ESC") 'term-send-raw)
+            (define-key term-raw-map (kbd "C-q") 'toggle-term-view)))
 
 ;;;
 ;;; backward-delete-word
@@ -743,3 +760,8 @@ With argument, do this that many times."
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; make frequently used commands short
+(defalias 'dtw 'delete-trailing-whitespace)
+(defalias 'rs 'replace-string)
+(defalias 'tm 'text-mode)
