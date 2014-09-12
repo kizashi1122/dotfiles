@@ -30,6 +30,7 @@ alias ga='git add '
 alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
+alias gf='git submodule foreach git pull origin master'
 
 alias pmver="perl -le '\$m = shift; eval qq(require \$m)
              or die qq(module \"\$m\" is not installed\\n); print \$m->VERSION'"
