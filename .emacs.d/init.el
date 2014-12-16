@@ -111,13 +111,13 @@
 (when (eq window-system 'ns)
   ;; asciiフォントをMenloに
   (set-face-attribute 'default nil
-                      :family "Menlo"
+                      :family "monaco"
                       :height 120)
   ;; 日本語フォントをヒラギノ明朝 Proに
   (set-fontset-font
    nil 'japanese-jisx0208
    ;; 英語名の場合
-   ;; (font-spec :family "Hiragino Mincho Pro"))
+   ;;(font-spec :family "Hiragino Mincho Pro"))
    ;;(font-spec :family "ヒラギノ明朝 Pro"))
    (font-spec :family "Osaka"))
   ;; ひらがなとカタカナをモトヤシーダに
@@ -128,12 +128,12 @@
   ;;nil '(#x3040 . #x30ff)
   ;;(font-spec :family "NfMotoyaCedar"))
   ;; フォントの横幅を調節する
-  ;; (setq face-font-rescale-alist
-  ;;       '((".*Menlo.*" . 1.0)
-  ;;         (".*Hiragino_Mincho_Pro.*" . 1.2)
-  ;;         (".*nfmotoyacedar-bold.*" . 1.2)
-  ;;         (".*nfmotoyacedar-medium.*" . 1.2)
-  ;;         ("-cdac$" . 1.3)))
+   (setq face-font-rescale-alist
+         '((".*Menlo.*" . 1.0)
+           (".*Hiragino_Mincho_Pro.*" . 1.2)
+           (".*nfmotoyacedar-bold.*" . 1.2)
+           (".*nfmotoyacedar-medium.*" . 1.2)
+           ("-cdac$" . 1.3)))
   )
 
 (when (eq system-type 'windows-nt)
@@ -320,6 +320,7 @@
 (setq nxml-child-indent 0)
 ;; 属性値のインデント幅を設定する。初期値は4
 (setq nxml-attribute-indent 0)
+
 
 ;; ▼要拡張機能インストール▼
 ;;; P161 cssm-modeの基本設定
@@ -645,23 +646,23 @@
 (if window-system (progn
 
     ;; 文字の色を設定します。
-    (add-to-list 'default-frame-alist '(foreground-color . "gray10"))
+    ;;(add-to-list 'default-frame-alist '(foreground-color . "gray10"))
     ;; 背景色を設定します。
-    (add-to-list 'default-frame-alist '(background-color . "white"))
+    ;;(add-to-list 'default-frame-alist '(background-color . "white"))
     ;; カーソルの色を設定します。
-    (add-to-list 'default-frame-alist '(cursor-color . "SlateBlue2"))
+    ;;(add-to-list 'default-frame-alist '(cursor-color . "SlateBlue2"))
     ;; マウスポインタの色を設定します。
-    (add-to-list 'default-frame-alist '(mouse-color . "SlateBlue2"))
+    ;;(add-to-list 'default-frame-alist '(mouse-color . "SlateBlue2"))
     ;; モードラインの文字の色を設定します。
 ;;    (set-face-foreground 'modeline "white")
     ;; モードラインの背景色を設定します。
 ;;    (set-face-background 'modeline "MediumPurple2")
     ;; 選択中のリージョンの色を設定します。
-    (set-face-background 'region "LightSteelBlue1")
+    ;;(set-face-background 'region "LightSteelBlue1")
     ;; モードライン（アクティブでないバッファ）の文字色を設定します。
-    (set-face-foreground 'mode-line-inactive "gray30")
+    ;;(set-face-foreground 'mode-line-inactive "gray30")
     ;; モードライン（アクティブでないバッファ）の背景色を設定します。
-    (set-face-background 'mode-line-inactive "gray85")
+    ;;(set-face-background 'mode-line-inactive "gray85")
 	    ))
 ;; デフォルトの透明度を設定する (85%)
 (add-to-list 'default-frame-alist '(alpha . 90))
@@ -688,7 +689,10 @@
   scroll-step 1) 
 
 ;(load-theme 'misterioso t)
-(load-theme 'light-blue t)
+;(load-theme 'light-blue t)
+;(load-theme 'manoj-dark t)
+;(load-theme 'tango-dark t)
+(load-theme 'wombat t)
 
 ;
 ; scss-mode

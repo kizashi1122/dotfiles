@@ -19,3 +19,6 @@
 [submodule ".emacs.d/public_repos/markdown-mode"]
 	path = .emacs.d/public_repos/markdown-mode
 	url = git://jblevins.org/git/markdown-mode.git
+[submodule ".emacs.d/public_repos/web-mode"]
+	path = .emacs.d/public_repos/web-mode
+	url = https://github.com/fxbois/web-mode
